@@ -68,7 +68,7 @@ def init_ldap_connection(target, tls_version, domain, username, password, lmhash
         logging.debug('Performing anonymous bind')
         ldap_session = ldap3.Connection(ldap_server, authentication=ANONYMOUS, auto_bind=True)
     else:
-        ldap_session = ldap3.Connection(ldap_server, user=user, password=password, authentication=ldap3.NTLM, auto_bind=True)
+        ldap_session = ldap3.Connection(ldap_server, user=user, password=password, authentication=ldap3.SIMPLE, auto_bind=ldap3.AUTO_BIND_TLS_BEFORE_BIND)
 
     return ldap_server, ldap_session
 
